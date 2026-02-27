@@ -11,15 +11,12 @@ class ExcelService {
   Future<Map<String, dynamic>> processExcelFile(Uint8List fileBytes) async {
     try {
       final excel = Excel.decodeBytes(fileBytes);
-      
+
       if (excel.tables.isEmpty) {
         throw Exception('No worksheets found in the Excel file');
       }
 
       final sheet = excel.tables.values.first;
-      if (sheet == null) {
-        throw Exception('Unable to read worksheet');
-      }
 
       List<StudentGrade> students = [];
       int nameColumnIndex = -1;
@@ -53,11 +50,9 @@ class ExcelService {
                 try {
                   final score = double.parse(scoreCell.toString());
                   final grade = _gradeScale.calculateGrade(score);
-                  students.add(StudentGrade(
-                    name: name,
-                    score: score,
-                    grade: grade,
-                  ));
+                  students.add(
+                    StudentGrade(name: name, score: score, grade: grade),
+                  );
                 } catch (e) {
                   // Skip rows with invalid scores
                   continue;
@@ -69,7 +64,9 @@ class ExcelService {
       }
 
       if (students.isEmpty) {
-        throw Exception('No valid student data found. Ensure your file has "Student Name" and "Score" columns.');
+        throw Exception(
+          'No valid student data found. Ensure your file has "Student Name" and "Score" columns.',
+        );
       }
 
       // Calculate grade distribution
@@ -122,15 +119,18 @@ class ExcelService {
       for (int i = 0; i < students.length; i++) {
         final student = students[i];
         final rowIndex = i + 2;
-        
-        sheet.cell(CellIndex.indexByString('A$rowIndex')).value = student['name'];
-        sheet.cell(CellIndex.indexByString('B$rowIndex')).value = student['score'];
-        sheet.cell(CellIndex.indexByString('C$rowIndex')).value = student['grade'];
+
+        sheet.cell(CellIndex.indexByString('A$rowIndex')).value =
+            student['name'];
+        sheet.cell(CellIndex.indexByString('B$rowIndex')).value =
+            student['score'];
+        sheet.cell(CellIndex.indexByString('C$rowIndex')).value =
+            student['grade'];
 
         // Style grade cells based on grade
         final gradeCell = sheet.cell(CellIndex.indexByString('C$rowIndex'));
         final grade = student['grade'] as String;
-        
+
         CellStyle gradeStyle;
         switch (grade) {
           case 'A':
@@ -176,18 +176,19 @@ class ExcelService {
 
       // Add summary section
       final summaryStartRow = students.length + 4;
-      sheet.cell(CellIndex.indexByString('A$summaryStartRow')).value = 'Grade Distribution';
-      sheet.cell(CellIndex.indexByString('A$summaryStartRow')).cellStyle = CellStyle(
-        bold: true,
-        fontSize: 14,
-      );
+      sheet.cell(CellIndex.indexByString('A$summaryStartRow')).value =
+          'Grade Distribution';
+      sheet.cell(CellIndex.indexByString('A$summaryStartRow')).cellStyle =
+          CellStyle(bold: true, fontSize: 14);
 
       final distribution = results['distribution'] as Map<String, dynamic>;
       int distributionRow = summaryStartRow + 2;
-      
+
       for (final entry in distribution.entries) {
-        sheet.cell(CellIndex.indexByString('A$distributionRow')).value = 'Grade ${entry.key}';
-        sheet.cell(CellIndex.indexByString('B$distributionRow')).value = entry.value;
+        sheet.cell(CellIndex.indexByString('A$distributionRow')).value =
+            'Grade ${entry.key}';
+        sheet.cell(CellIndex.indexByString('B$distributionRow')).value =
+            entry.value;
         distributionRow++;
       }
 
@@ -200,12 +201,11 @@ class ExcelService {
       final fileBytes = excel.save();
       if (fileBytes != null) {
         await file.writeAsBytes(fileBytes);
-        
+
         // Share the file
-        await Share.shareXFiles(
-          [XFile(file.path)],
-          text: 'Graded results exported from Grade Calculator',
-        );
+        await Share.shareXFiles([
+          XFile(file.path),
+        ], text: 'Graded results exported from Grade Calculator');
       } else {
         throw Exception('Failed to generate Excel file');
       }
@@ -244,8 +244,10 @@ class ExcelService {
 
       for (int i = 0; i < sampleData.length; i++) {
         final rowIndex = i + 2;
-        sheet.cell(CellIndex.indexByString('A$rowIndex')).value = sampleData[i][0];
-        sheet.cell(CellIndex.indexByString('B$rowIndex')).value = sampleData[i][1];
+        sheet.cell(CellIndex.indexByString('A$rowIndex')).value =
+            sampleData[i][0] as String;
+        sheet.cell(CellIndex.indexByString('B$rowIndex')).value =
+            sampleData[i][1] as int;
       }
 
       // Get Downloads directory

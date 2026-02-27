@@ -1,103 +1,124 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'screens/welcome_screen.dart';
-import 'screens/dashboard_screen.dart';
-import 'screens/results_preview_screen.dart';
+import 'package:grade_calculator/screens/welcome_screen.dart';
+import 'package:grade_calculator/screens/dashboard_screen.dart';
+import 'package:grade_calculator/screens/results_preview_screen.dart';
 
 void main() {
-  runApp(const GradeCalculatorApp());
+  runApp(const GradeGenieApp());
 }
 
-class GradeCalculatorApp extends StatelessWidget {
-  const GradeCalculatorApp({super.key});
+class GradeGenieApp extends StatelessWidget {
+  const GradeGenieApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Grade Calculator',
+      title: 'GradeGenie',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color(0xFF2563EB),
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF2563EB),
           primary: const Color(0xFF2563EB),
+          secondary: const Color(0xFF3B82F6),
         ),
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          backgroundColor: Colors.transparent,
+          centerTitle: false,
           elevation: 0,
+          backgroundColor: Colors.transparent,
           titleTextStyle: TextStyle(
             color: Colors.black,
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
           iconTheme: IconThemeData(color: Colors.black),
         ),
+        cardTheme: CardTheme(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          color: Colors.white,
+        ),
       ),
-      home: const MainNavigator(),
-      debugShowCheckedModeBanner: false,
+      home: const MainNavigationScreen(),
     );
   }
 }
 
-class MainNavigator extends StatefulWidget {
-  const MainNavigator({super.key});
+class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
 
   @override
-  State<MainNavigator> createState() => _MainNavigatorState();
+  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
-class _MainNavigatorState extends State<MainNavigator> {
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
   Map<String, dynamic>? _gradingResults;
 
-  void _onGradingComplete(Map<String, dynamic> results) {
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _handleGradingComplete(Map<String, dynamic> results) {
     setState(() {
       _gradingResults = results;
-      _selectedIndex = 2; // Navigate to results screen
+      _selectedIndex = 2; // Navigate to Results tab
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // The screens are rebuilt when dependencies change, but we want to keep state if possible.
+    // However, with simple navigation, rebuilding is fine.
     final List<Widget> screens = [
       const WelcomeScreen(),
-      DashboardScreen(onGradingComplete: _onGradingComplete),
+      DashboardScreen(onGradingComplete: _handleGradingComplete),
       ResultsPreviewScreen(results: _gradingResults),
     ];
 
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: screens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xFF2563EB),
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_outlined),
-            activeIcon: Icon(Icons.dashboard),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart_outlined),
-            activeIcon: Icon(Icons.bar_chart),
-            label: 'Results',
-          ),
-        ],
+      body: IndexedStack(index: _selectedIndex, children: screens),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          unselectedItemColor: Colors.grey[500],
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          showUnselectedLabels: true,
+          elevation: 0,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home_rounded),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.upload_file_outlined),
+              activeIcon: Icon(Icons.upload_file_rounded),
+              label: 'Dashboard',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.analytics_outlined),
+              activeIcon: Icon(Icons.analytics_rounded),
+              label: 'Results',
+            ),
+          ],
+        ),
       ),
     );
   }

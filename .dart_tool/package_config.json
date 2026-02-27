@@ -8,12 +8,6 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "args",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.7.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
       "name": "async",
       "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.0",
       "packageUri": "lib/",
@@ -68,12 +62,6 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "dbus",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/dbus-0.7.12",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "equatable",
       "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.8",
       "packageUri": "lib/",
@@ -105,7 +93,7 @@
     },
     {
       "name": "file_picker",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-10.3.10",
+      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-8.3.7",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -117,13 +105,13 @@
     },
     {
       "name": "fl_chart",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-1.1.1",
+      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.66.2",
       "packageUri": "lib/",
-      "languageVersion": "3.6"
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter",
-      "rootUri": "file:///C:/Users/840%20G5/develop/flutter/packages/flutter",
+      "rootUri": "file:///C:/develop/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -141,13 +129,13 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///C:/Users/840%20G5/develop/flutter/packages/flutter_test",
+      "rootUri": "file:///C:/develop/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///C:/Users/840%20G5/develop/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///C:/develop/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -213,7 +201,7 @@
     },
     {
       "name": "mime",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/mime-2.0.0",
+      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/mime-1.0.6",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -273,13 +261,13 @@
     },
     {
       "name": "permission_handler",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-12.0.1",
+      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-11.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
     {
       "name": "permission_handler_android",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_android-13.0.1",
+      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_android-12.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -333,19 +321,19 @@
     },
     {
       "name": "share_plus",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/share_plus-12.0.1",
+      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/share_plus-7.2.2",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "2.18"
     },
     {
       "name": "share_plus_platform_interface",
-      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/share_plus_platform_interface-6.1.0",
+      "rootUri": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache/hosted/pub.dev/share_plus_platform_interface-3.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///C:/Users/840%20G5/develop/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///C:/develop/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -467,12 +455,12 @@
       "name": "grade_calculator",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.11"
     }
   ],
   "generator": "pub",
   "generatorVersion": "3.11.0",
-  "flutterRoot": "file:///C:/Users/840%20G5/develop/flutter",
+  "flutterRoot": "file:///C:/develop/flutter",
   "flutterVersion": "3.41.2",
   "pubCache": "file:///C:/Users/840%20G5/AppData/Local/Pub/Cache"
 }
